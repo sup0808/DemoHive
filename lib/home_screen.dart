@@ -27,10 +27,11 @@ class _home_screenState extends State<home_screen> {
                       subtitle: Text(snapshot.data!.get('age').toString()),
                       trailing: IconButton(
                         onPressed: () {
-                          snapshot.data!.put('name', 'Shrreja Gupta');
+                         // snapshot.data!.put('name', 'Shrreja Gupta');
+                          snapshot.data!.delete('name');
                           setState(() {});
                         },
-                        icon: Icon(Icons.edit),
+                        icon: Icon(Icons.delete),
                       )),
                   Text(snapshot.data!.get('user').toString()),
                 ],
