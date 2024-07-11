@@ -1,4 +1,5 @@
 import 'package:demo_hive/home_screen.dart';
+import 'package:demo_hive/note_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: home_screen(),
+      home: note_screen(),
     );
   }
 }
