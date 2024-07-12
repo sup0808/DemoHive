@@ -1,6 +1,8 @@
 import 'package:demo_hive/models/notes_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'boxes/boxes.dart';
 
@@ -18,8 +20,29 @@ class _note_screenState extends State<note_screen> {
       appBar: AppBar(
         title: Text('Hive Database'),
       ),
-      body: Column(
-        children: [],
+      body:ValueListenableBuilder(
+        valueListenable: Boxes.getData().listenable(),
+        builder: (context,box ,_){
+          var data = box.values.toList().cast<NotesModel>();
+          return ListView.builder(
+              itemCount: box.length,
+              itemBuilder: (context, index){
+            return Card(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(data[index].title.toString()),
+                    Text(data[index].description.toString()),
+
+                  ],
+                ),
+              ),
+            );
+          });
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -68,7 +91,7 @@ class _note_screenState extends State<note_screen> {
                     final data = NotesModel(title: titleController.text, description: descriptionController.text);
                     final box = Boxes.getData();
                     box.add(data);
-                    data.save();
+                  //  data.save();
                     print("Hive Database $box");
                     titleController.clear();
                     descriptionController.clear();
