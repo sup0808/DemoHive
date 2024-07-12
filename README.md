@@ -1,4 +1,6 @@
 # demo_hive
+# youtube_url for Notes app
+https://www.youtube.com/playlist?list=PLFyjjoCMAPtyQAnT6GilOjctmtTLBOZf4
 
 A new Flutter project.
 
